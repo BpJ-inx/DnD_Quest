@@ -1,0 +1,49 @@
+.dice-button {
+    width: 100px;
+    height: 100px;
+    background-image: url("https://cdn0.iconfinder.com/data/icons/video-game-items-concepts-line-art/128/dd-dice-512.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.2s ease, filter 0.3s ease;
+  }
+  
+  .dice-button:hover {
+    transform: translateY(-5px);
+    filter: brightness(1.1);
+  }
+  
+  .dice-button:active {
+    animation: rotate 0.6s ease;
+    filter: brightness(0.9);
+  }
+  
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .dice-number {
+    position: absolute;
+    z-index: 10;
+    color: #fff;
+    font-size: 32px;
+    font-weight: bold;
+    text-shadow: none;
+  }
+  
+  .dice-button:disabled {
+    filter: brightness(0.5);
+    cursor: default;
+    transform: translateY(0px);
+  }
