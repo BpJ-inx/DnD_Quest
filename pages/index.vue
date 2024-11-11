@@ -94,6 +94,7 @@
       <button class="start-button" @click="startQuest(router)">Начать</button>
     </div>
   </div>
+
   <div class="flex text-sm mt-3">
     <p>P.S. Использован автоматический перевод.</p>
   </div>

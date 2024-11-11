@@ -42,7 +42,8 @@
       </div>
     </div>
   </div>
-  <div v-if="currentScene" class="flex text-sm mt-3">
+
+  <div v-if="currentScene" class="ps-text">
     <p>P.S. Использован автоматический перевод.</p>
   </div>
 </template>
