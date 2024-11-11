@@ -11,6 +11,7 @@ const profExp = ref(false);
 const checkTestStat = ref();
 
 const rollD20 = () => {
+  canUseDestPoints.value = false;
   isRolled.value = true;
   setTimeout(() => {
     resultDiceRoll.value = Math.floor(Math.random() * 20) + 1;

@@ -11,6 +11,7 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
+      title: 'DnD. Solo adventure',
       link: [
         { rel: 'icon', href: '/favicon.ico' },
       ],

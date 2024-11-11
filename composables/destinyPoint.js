@@ -14,7 +14,6 @@ const removeDestPoint = () => {
 const useDestPointForSuccess = () => {
   destPoints.value -= 1;
   isDiceCheck.value = false;
-  canUseDestPoints.value = false;
   allSumRoll.value = Infinity;
   checkTest();
 };

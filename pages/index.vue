@@ -102,6 +102,7 @@
 <script setup>
 import { useRouter } from "vue-router";
 const router = useRouter();
+canUseDestPoints.value = false;
 </script>
 
 <style lang="scss" scoped>
