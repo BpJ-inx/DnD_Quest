@@ -27,7 +27,7 @@
               <button
                 v-for="button in option.buttons"
                 class="option-button gap-7"
-                @click="nextScene(button)"
+                @click="nextScene(router, button)"
               >
                 {{ button.textButton }}
               </button>
@@ -36,7 +36,7 @@
         </div>
       </div>
       <div class="footer">
-        <button class="restart-button" @click="restart()">
+        <button class="restart-button" @click="restart(router)">
           Вернуться в начало
         </button>
       </div>
@@ -51,8 +51,6 @@
 import { ref, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
-const adventure = ref(null);
-const currentScene = ref(null);
 const route = useRoute();
 const router = useRouter();
 
@@ -62,41 +60,11 @@ if (isDiceCheck.value) {
   if (profExp.value) profExp.value = !profExp.value;
 }
 
-const fetchCurrentScene = async () => {
-  const response = await fetch("/textQuest.json"); // dnd quest
-  adventure.value = await response.json();
-};
-
-const updateCurrentScene = () => {
-  currentScene.value = adventure.value.scenes.find(
-    (scene) => String(scene.id) === route.params.id // dnd quest
-  );
-
-  if (currentScene.value.checkTest) {
-    isDiceCheck.value = !isDiceCheck.value;
-    openUseDestPoint();
-    resultNeed.value = currentScene.value.checkTest;
-    showButtons.value = !showButtons.value;
-    checkTestStat.value = currentScene.value.checkTestStat;
-    if (currentScene.value.saveCheck) profExp.value = !profExp.value;
-  }
-};
-
-const nextScene = (nextRoute) => {
-  if (nextRoute.removeDestinyPoint) removeDestPoint();
-  router.push(`/dndAdventure/${nextRoute.nextScene}`);
-  if (isRolled.value) isRolled.value = !isRolled.value;
-  resultDiceRoll.value = "d20";
-  if (!showButtons.value) showButtons.value = !showButtons.value;
-};
-
-const restart = () => {
-  restartDestPoints();
-  router.push("/"); // dnd quest
-};
-
 onMounted(async () => {
   await fetchCurrentScene();
-  updateCurrentScene();
+  if (adventure.value.fight[route.params.id]) {
+    isFight.value = true;
+  }
+  updateCurrentScene(route.params.id);
 });
 </script>
