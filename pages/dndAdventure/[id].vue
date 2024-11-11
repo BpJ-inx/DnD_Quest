@@ -74,6 +74,7 @@ const updateCurrentScene = () => {
 
   if (currentScene.value.checkTest) {
     isDiceCheck.value = !isDiceCheck.value;
+    openUseDestPoint();
     resultNeed.value = currentScene.value.checkTest;
     showButtons.value = !showButtons.value;
     checkTestStat.value = currentScene.value.checkTestStat;
