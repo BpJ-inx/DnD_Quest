@@ -2,6 +2,7 @@ import { ref } from "vue";
 
 const adventure = ref(null);
 const currentScene = ref(null);
+const enemy = ref("");
 
 const fetchCurrentScene = async () => {
   const response = await fetch("/textQuest.json"); // dnd quest
@@ -21,6 +22,10 @@ const updateCurrentScene = (routeID) => {
     checkTestStat.value = currentScene.value.checkTestStat;
     if (currentScene.value.saveCheck) profExp.value = !profExp.value;
   }
+  if (currentScene.value.enemy) {
+    enemy.value = currentScene.value.enemy;
+    console.log(enemy.value);
+  }
 };
 
 const nextScene = (router, nextRoute) => {
@@ -29,10 +34,12 @@ const nextScene = (router, nextRoute) => {
   if (isRolled.value) isRolled.value = !isRolled.value;
   resultDiceRoll.value = "d20";
   if (!showButtons.value) showButtons.value = !showButtons.value;
+  if (isFight.value) isFight.value = false;
 };
 
 const restart = (router) => {
   restartDestPoints();
+  if (isFight.value) isFight.value = false;
   router.push("/"); // dnd quest
 };
 
@@ -43,4 +50,5 @@ export {
   updateCurrentScene,
   nextScene,
   restart,
+  enemy,
 };

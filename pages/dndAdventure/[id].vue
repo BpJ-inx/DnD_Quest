@@ -44,6 +44,9 @@
           </button>
         </div>
       </div>
+      <div class="enemy">
+        <img v-if="isFight" :src="enemy" />
+      </div>
     </div>
   </div>
   <div v-if="currentScene" class="ps-text">
@@ -55,8 +58,11 @@
 import { onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
+
 const route = useRoute();
 const router = useRouter();
+
+if (isFight.value) isFight.value = false;
 
 if (isDiceCheck.value) {
   isDiceCheck.value = !isDiceCheck.value;
@@ -72,3 +78,6 @@ onMounted(async () => {
   updateCurrentScene(route.params.id);
 });
 </script>
+<style>
+@import "/assets/css/idStyle.css";
+</style>

@@ -1,11 +1,11 @@
 <template>
-  <div v-if="destPoints > 0">
+  <div class="flex flex-col" v-if="destPoints > 0">
     <p class="text-center mb-4 text-xl text-[#ff4c4c]">Очки судьбы</p>
     <div class="flex flex-row justify-center">
       <img
         v-for="n in destPoints"
         :key="n"
-        src="/assets/image/destinyStar.svg"
+        src="/assets/imageSvg/destinyStar.svg"
       />
     </div>
     <button

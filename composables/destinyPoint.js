@@ -25,7 +25,7 @@ const restartDestPoints = () => {
 };
 
 const useDestPointInFight = (router, nextAdresss) => {
-  destPoints.value -= 1;
+  destPoints.value -= 1;  
   isFight.value = false;
   nextScene(router, adventure.value.fight[nextAdresss]);
 };
