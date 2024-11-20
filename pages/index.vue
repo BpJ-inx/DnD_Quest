@@ -103,7 +103,10 @@
 <script setup>
 import { useRouter } from "vue-router";
 const router = useRouter();
+
 canUseDestPoints.value = false;
+
+restartStash();
 </script>
 
 <style lang="scss" scoped>

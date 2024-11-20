@@ -5,11 +5,13 @@ const isItems = ref(false);
 
 if (
   typeof window !== "undefined" &&
-  JSON.parse(localStorage.getItem("itemStash")).length > 0
+  JSON.parse(localStorage.getItem("itemStash"))
 ) {
-  isItems.value = true;
-} else {
-  isItems.value = false;
+  if (JSON.parse(localStorage.getItem("itemStash")).length > 0) {
+    isItems.value = true;
+  } else {
+    isItems.value = false;
+  }
 }
 
 const addItemInStash = () => {
@@ -35,4 +37,11 @@ const removeFromStash = (itemsInBack, index, n) => {
   if (stash.size == 0) isItems.value = false;
 };
 
-export { item, addItemInStash, isItems, removeFromStash };
+const restartStash = () => {
+  isItems.value = false;
+  if (typeof window !== "undefined") {
+    localStorage.setItem("itemStash", JSON.stringify([]));
+  }
+};
+
+export { item, addItemInStash, isItems, removeFromStash, restartStash };
