@@ -3,10 +3,12 @@ import { ref } from "vue";
 const adventure = ref(null);
 const currentScene = ref(null);
 const enemy = ref("");
+const allItems = ref();
 
 const fetchCurrentScene = async () => {
   const response = await fetch("/textQuest.json"); // dnd quest
   adventure.value = await response.json();
+  allItems.value = adventure.value.items;
 };
 
 const updateCurrentScene = (routeID) => {
@@ -35,6 +37,13 @@ const nextScene = (router, nextRoute) => {
   resultDiceRoll.value = "d20";
   if (!showButtons.value) showButtons.value = !showButtons.value;
   if (isFight.value) isFight.value = false;
+
+  if (nextRoute.item || nextRoute.item == 0) {
+    item.value = nextRoute.item;
+    // console.log(item.value);
+
+    addItemInStash();
+  }
 };
 
 const restart = (router) => {
@@ -51,4 +60,5 @@ export {
   nextScene,
   restart,
   enemy,
+  allItems,
 };

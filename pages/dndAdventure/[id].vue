@@ -2,17 +2,15 @@
   <div class="page-container">
     <div class="flex" v-if="currentScene">
       <div class="flex flex-col items-center w-1/4 p-5 mr-8">
-        <DestinyPointStar />
+        <DestinyPointStar class="mb-8" />
+        <Backpack />
       </div>
       <div class="container">
         <h1 class="title">To hell and back again.</h1>
         <p class="scene-text">{{ currentScene.text }}</p>
         <div class="flex justify-center">
           <div class="flex flex-col items-center w-full">
-            <DicePlaceCheck
-              v-if="isDiceCheck"
-              class="flex m-5"
-            ></DicePlaceCheck>
+            <DicePlaceCheck v-if="isDiceCheck" class="flex m-5" />
             <div class="flex gap-7 flex-col w-full">
               <p
                 class="scene-text hidden"
@@ -57,7 +55,6 @@
 <script setup>
 import { onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
-
 
 const route = useRoute();
 const router = useRouter();
